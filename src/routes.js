@@ -12,12 +12,12 @@ const routes = new Router();
 
 routes.get('/', Home.show);
 
+routes.get('/users/:id',authorizationVerify, UsersController.index);
+
 routes.use(emailVerify.validate());
 routes.use(emailVerify.verify());
 
 routes.post('/signup', SignUpController.create);
 routes.post('/signin', SignInController.create);
-routes.use(authorizationVerify);
-routes.get('/users/:id', UsersController.index);
 
 export default routes;
