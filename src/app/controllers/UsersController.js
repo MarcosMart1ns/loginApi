@@ -18,7 +18,7 @@ class UsersController{
         }
 
         const timeDiference = differenceInMinutes(new Date(),user.ultimo_login)
-            console.log(timeDiference);
+
         if(timeDiference>29){
             return res.status(401).json({ERRO:"Sessão inválida"});
         }
