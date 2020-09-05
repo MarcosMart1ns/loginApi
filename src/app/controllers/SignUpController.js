@@ -1,12 +1,13 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
+import { validationResult } from 'express-validator';
 import User from '../database/schemas/User';
 import auth from '../../config/auth';
 
 class SignUpController{
     async create(req,res){
         const { nome, email, senha, telefones } = req.body;
-        
+
         const UserExists = await User.find({
             email: email
         });
@@ -30,13 +31,12 @@ class SignUpController{
                 ultimo_login: new Date()
             });
 
-            const { id, ultimo_login,senha: senha_hash, token, createdAt: data_criacao, updatedAt: data_atualizacao } = user
+            const { id, ultimo_login, token, createdAt: data_criacao, updatedAt: data_atualizacao } = user
 
             return res.status(201).json({
                 id,
                 nome,
                 email,
-                senha_hash,
                 telefones,
                 data_criacao,
                 data_atualizacao,

@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import mongoose from 'mongoose';
 
 class Database{
@@ -6,7 +7,7 @@ class Database{
     }
 
     mongo(){
-        this.connection = mongoose.connect('mongodb+srv://loginapi:123@cluster0.j5isd.mongodb.net/loginapi?retryWrites=true&w=majority',
+        this.connection = mongoose.connect(process.env.DB_URL,
             {
                 useNewUrlParser: true, 
                 useUnifiedTopology: true
