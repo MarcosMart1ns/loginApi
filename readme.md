@@ -1,15 +1,15 @@
-#LoginApi
+# LoginApi
 
 Uma REST Api simples que gerencia cadastro, log de usuário e a busca de informações do usuário logado que recebe e retorna dados através de JSON's via HTTP.
 A senha é hasheada em MD5 antes de ser gravada no banco de dados assim como o Token é persistido junto aos dados do usuário.
 
 ## Rotas:
 
-###GET /
+### GET /
 
 Home do projeto e retorna dados apenas para mostrar que api está funcionando e retornando dados.
 
-###POST /signup
+### POST /signup
 Cadastro do usuário,
 
 Recebe no corpo(body):
@@ -29,7 +29,7 @@ Recebe no corpo(body):
 
 Em caso de sucesso retorna os dados do usuário assim como o token JWT de autenticação.
 
-###POST /signin
+### POST /signin
 Rota utilizada para autenticação, em caso de sucesso retorna os dados do usuário e seu token JWT de acesso.
 O token expira em 30 minutos, após esse intervalo é necessário gerar uma nova autenticação.
 
@@ -41,7 +41,7 @@ Recebe no corpo(body):
 }
 ~~~
 
-###GET /users/userID
+### GET /users/userID
 
 Busca e retorna os dados do usuário logado, onde na rota 'userID' representa o id do usuário informado nas duas rotas anteriores.
 O usuário logado apenas pode visualizar os próprios dados, caso informe um id incorreto ou de outro usuário, receberá um retorno de erro.
