@@ -1,8 +1,9 @@
-import User from '../database/schemas/User';
 import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import User from '../database/schemas/User';
 import auth from '../../config/auth';
 
-class UserController{
+class SignUpController{
     async create(req,res){
         const { nome, email, senha, telefones } = req.body;
         
@@ -19,7 +20,8 @@ class UserController{
             const user = await User.create({
                 nome,
                 email,
-                senha,
+                //hashea a senha antes de salvar no banco
+                senha: await bcrypt.hash(senha,8),
                 telefones,
                 //cria um JWT com o email do user e o segredo 
                 token: jwt.sign({email},auth.secret,{
@@ -66,4 +68,4 @@ class UserController{
     }
 }
 
-export default new UserController();
+export default new SignUpController();

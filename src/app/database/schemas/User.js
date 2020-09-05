@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import bcrypt from 'bcryptjs';
+
 
 const UserSchema = new mongoose.Schema({
     nome: {
@@ -44,12 +44,5 @@ const UserSchema = new mongoose.Schema({
 
 }
 );
-
-UserSchema.pre('save',async function (next) {
-    //hashea a senha antes de salvar no mongoDB
-    const password = this.senha;
-    this.senha = await bcrypt.hash(password,8);
-    next()
-})
 
 export default mongoose.model('loginapi_Users',UserSchema);
